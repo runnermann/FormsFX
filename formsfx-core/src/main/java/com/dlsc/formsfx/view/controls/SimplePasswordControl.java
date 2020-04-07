@@ -45,7 +45,7 @@ public class SimplePasswordControl extends SimpleControl<PasswordField> {
      * the readOnlyLabel over the editableField on the change of the
      * visibleProperty.
      */
-    protected StackPane stack;
+    private StackPane stack;
 
     /**
      * - The fieldLabel is the container that displays the label property of
@@ -53,14 +53,14 @@ public class SimplePasswordControl extends SimpleControl<PasswordField> {
      * - The editableField allows users to modify the field's value.
      * - The readOnlyLabel displays the field's value if it is not editable.
      */
-    protected javafx.scene.control.PasswordField editableField;
-    protected Label readOnlyLabel;
-    protected Label fieldLabel;
+    private javafx.scene.control.PasswordField fxPasswordField;
+    private Label readOnlyLabel;
+    private Label fieldLabel;
 
     /*
      * Translates characters found in user input into '*'
      */
-    protected StringBinding obfuscatedUserInputBinding;
+    private StringBinding obfuscatedUserInputBinding;
 
     /**
      * {@inheritDoc}
@@ -73,12 +73,13 @@ public class SimplePasswordControl extends SimpleControl<PasswordField> {
 
         stack = new StackPane();
 
-        editableField = new javafx.scene.control.PasswordField();
-        editableField.setText(field.getValue());
+        fxPasswordField = new javafx.scene.control.PasswordField();
+        fxPasswordField.setText(field.getValue());
 
         readOnlyLabel = new Label(obfuscate(field.getValue()));
         fieldLabel = new Label(field.labelProperty().getValue());
-        editableField.setPromptText(field.placeholderProperty().getValue());
+        fxPasswordField.setPromptText(field.placeholderProperty().getValue());
+        fxPasswordField.setId("password");
     }
 
     /**
@@ -92,7 +93,7 @@ public class SimplePasswordControl extends SimpleControl<PasswordField> {
 
         readOnlyLabel.setPrefHeight(26);
 
-        stack.getChildren().addAll(editableField, readOnlyLabel);
+        stack.getChildren().addAll(fxPasswordField, readOnlyLabel);
 
         stack.setAlignment(Pos.CENTER_LEFT);
 
@@ -134,15 +135,15 @@ public class SimplePasswordControl extends SimpleControl<PasswordField> {
     public void setupBindings() {
         super.setupBindings();
 
-        editableField.visibleProperty().bind(field.editableProperty());
+        fxPasswordField.visibleProperty().bind(field.editableProperty());
         readOnlyLabel.visibleProperty().bind(field.editableProperty().not());
 
-        editableField.textProperty().bindBidirectional(field.userInputProperty());
+        fxPasswordField.textProperty().bindBidirectional(field.userInputProperty());
         obfuscatedUserInputBinding = Bindings.createStringBinding(() -> obfuscate(field.getUserInput()), field.userInputProperty());
         readOnlyLabel.textProperty().bind(obfuscatedUserInputBinding);
         fieldLabel.textProperty().bind(field.labelProperty());
-        editableField.promptTextProperty().bind(field.placeholderProperty());
-        editableField.managedProperty().bind(editableField.visibleProperty());
+        fxPasswordField.promptTextProperty().bind(field.placeholderProperty());
+        fxPasswordField.managedProperty().bind(fxPasswordField.visibleProperty());
     }
 
     /**
@@ -152,9 +153,9 @@ public class SimplePasswordControl extends SimpleControl<PasswordField> {
     public void setupValueChangedListeners() {
         super.setupValueChangedListeners();
 
-        field.errorMessagesProperty().addListener((observable, oldValue, newValue) -> toggleTooltip(editableField));
+        field.errorMessagesProperty().addListener((observable, oldValue, newValue) -> toggleTooltip(fxPasswordField));
 
-        editableField.focusedProperty().addListener((observable, oldValue, newValue) -> toggleTooltip(editableField));
+        fxPasswordField.focusedProperty().addListener((observable, oldValue, newValue) -> toggleTooltip(fxPasswordField));
     }
 
     protected String obfuscate(String input) {

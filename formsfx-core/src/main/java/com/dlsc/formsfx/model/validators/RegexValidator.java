@@ -20,6 +20,7 @@ package com.dlsc.formsfx.model.validators;
  * =========================LICENSE_END==================================
  */
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
@@ -32,39 +33,56 @@ import java.util.regex.PatternSyntaxException;
 public class RegexValidator extends RootValidator<String> {
 
     private Pattern pattern;
+    private boolean notPattern;
 
     private RegexValidator(String pattern, String errorMessage) throws PatternSyntaxException {
         super(errorMessage);
         this.pattern = Pattern.compile(pattern);
     }
+    
+    /**
+     * Negated constructor. Sets the notPattern to the value desired for a regex
+     * match or find. IE if a regex is found, allows to set the response as the provided
+     * value.
+     * @param pattern pattern
+     * @param errorMessage errorMessage
+     * @param notPattern notPattern, Sets this to the desired true or false evaluation of
+     *                   the regex string if it is true or false.
+     */
+    private RegexValidator(String pattern, String errorMessage, boolean notPattern) {
+        super(errorMessage);
+        this.pattern = Pattern.compile((pattern));
+        this.notPattern = notPattern;
+    }
 
     /**
      * Creates a RegexValidator with a custom pattern.
-     *
-     * @param pattern
-     *              The pattern to use for the validation. Must be a valid
-     *              RegEx.
-     * @param errorMessage
-     *              The error message that is returned if the validation fails.
-     *
-     * @throws PatternSyntaxException
-     *              Thrown if the given pattern is not a valid RegEx.
-     *
+     * @param pattern The pattern to use for the validation. Must be a valid RegEx.
+     * @param errorMessage The error message that is returned if the validation fails.
+     * @throws PatternSyntaxException Thrown if the given pattern is not a valid RegEx.
      * @return Returns a new RegexValidator.
      */
     public static RegexValidator forPattern(String pattern, String errorMessage) {
+        
         return new RegexValidator(pattern, errorMessage);
+    }
+    
+    /**
+     * Sets notPattern true. Used when the negated pattern is prefered to trigger
+     * false or true. IE false == true
+     * @param pattern regex pattern
+     * @param errorMessage Error message variable
+     * @return Returns a new RegexValidator
+     */
+    public static RegexValidator forNotPattern(String pattern, String errorMessage) {
+        
+        return new RegexValidator(pattern, errorMessage, true);
     }
 
     /**
      * Creates a RegexValidator for email addresses.
-     *
-     * @param errorMessage
-     *              The error message that is returned if the validation fails.
-     *
-     * @throws PatternSyntaxException
-     *              Thrown if the given pattern is not a valid RegEx.
-     *
+     * @param errorMessage The error message that is returned if the validation fails.
+     * @throws PatternSyntaxException Thrown if the given pattern is not a valid RegEx.
      * @return Returns a new RegexValidator.
      */
     public static RegexValidator forEmail(String errorMessage) {
@@ -73,13 +91,8 @@ public class RegexValidator extends RootValidator<String> {
 
     /**
      * Creates a RegexValidator for URLs.
-     *
-     * @param errorMessage
-     *              The error message that is returned if the validation fails.
-     *
-     * @throws PatternSyntaxException
-     *              Thrown if the given pattern is not a valid RegEx.
-     *
+     * @param errorMessage The error message that is returned if the validation fails.
+     * @throws PatternSyntaxException Thrown if the given pattern is not a valid RegEx.
      * @return Returns a new RegexValidator.
      */
     public static RegexValidator forURL(String errorMessage) {
@@ -88,13 +101,8 @@ public class RegexValidator extends RootValidator<String> {
 
     /**
      * Creates a RegexValidator for alphanumeric inputs.
-     *
-     * @param errorMessage
-     *              The error message that is returned if the validation fails.
-     *
-     * @throws PatternSyntaxException
-     *              Thrown if the given pattern is not a valid RegEx.
-     *
+     * @param errorMessage The error message that is returned if the validation fails.
+     * @throws PatternSyntaxException Thrown if the given pattern is not a valid RegEx.
      * @return Returns a new RegexValidator.
      */
     public static RegexValidator forAlphaNumeric(String errorMessage) {
@@ -106,7 +114,16 @@ public class RegexValidator extends RootValidator<String> {
      */
     @Override
     public ValidationResult validate(String input) {
-        return createResult(pattern.matcher(input).matches());
+        
+        if(notPattern) {
+            System.out.println("Pattern matches: " + pattern + "  matches regex:  " + input + "  result: " + ! pattern.matcher(input).matches() + "\n");
+            return createResult( ! pattern.matcher(input).matches());
+        }
+        else {
+            System.out.println("Pattern matches: " + pattern + "  matches regex:  " + input + "  result: " + pattern.matcher(input).matches());
+            return createResult(pattern.matcher(input).matches());
+        }
     }
+    
 
 }

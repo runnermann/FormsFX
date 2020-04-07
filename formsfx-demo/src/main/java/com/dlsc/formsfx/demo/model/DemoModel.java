@@ -44,7 +44,6 @@ public final class DemoModel {
 
     /**
      * Creates or simply returns to form singleton instance.
-     *
      * @return Returns the form instance.
      */
     public Form getFormInstance() {
@@ -146,11 +145,19 @@ public final class DemoModel {
                         Field.ofMultiSelectionType(country.allCitiesProperty(), country.germanCitiesProperty())
                                 .label("german_cities_label")
                                 .span(ColSpan.HALF),
-                        Field.ofPasswordType("secret")
+                        Field.ofPasswordType("")
                                 .label("secret_label")
                                 .required("required_error_message")
                                 .span(ColSpan.HALF)
-                                .validate(StringLengthValidator.between(1, 10, "secret_error_message"))
+                                .validate(
+                                        StringLengthValidator.between(8, 12, "pw_length_error_msg"),
+                                        RegexValidator.forPattern("[0-9A-Za-z!#$%&?@]*", "illegal_char_error_msg"),
+                                        RegexValidator.forPattern(".*[A-Z].*", "no_uppercase_error_msg"),
+                                        RegexValidator.forPattern(".*[a-z].*", "no_lowercase_error_msg"),
+                                        RegexValidator.forPattern(".*[0-9].*", "no_numeric_error_msg"),
+                                        RegexValidator.forPattern(".*[!#$%&?@].*", "no_specchars_error_msg"),
+                                        RegexValidator.forNotPattern(".*([0-9A-Za-z])\\1{2,}.*", "repeat_char_error_msg"))
+                                    
                 ).title("cities_and_population_label")
         ).title("form_label")
                 .i18n(rbs);

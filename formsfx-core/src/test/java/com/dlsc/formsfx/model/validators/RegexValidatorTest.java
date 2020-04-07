@@ -39,7 +39,7 @@ public class RegexValidatorTest {
 
         Assert.assertTrue(r.validate("abc").getResult());
         Assert.assertTrue(r.validate("aeihafpiaheypfhapfhpa").getResult());
-        Assert.assertFalse(r.validate("Ajj").getResult());
+        Assert.assertFalse(r.validate("hlhlhL").getResult());
         Assert.assertTrue(r.validate("").getResult());
         Assert.assertFalse(r.validate("hlhlhL").getResult());
 

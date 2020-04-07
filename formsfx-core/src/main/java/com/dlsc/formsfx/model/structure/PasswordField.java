@@ -21,9 +21,6 @@ package com.dlsc.formsfx.model.structure;
  */
 
 import com.dlsc.formsfx.view.controls.SimplePasswordControl;
-import com.dlsc.formsfx.view.controls.SimpleTextControl;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
@@ -45,6 +42,7 @@ public class PasswordField extends DataField<StringProperty, String, PasswordFie
      *              value of the field.
      */
     protected PasswordField(SimpleStringProperty valueProperty, SimpleStringProperty persistentValueProperty) {
+        
         super(valueProperty, persistentValueProperty);
 
         stringConverter = new AbstractStringConverter<String>() {

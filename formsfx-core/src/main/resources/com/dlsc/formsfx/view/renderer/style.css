@@ -1,6 +1,42 @@
 /*******************
  * GENERAL STYLING *
  *******************/
+.root {
+    -fx-base: #ececec;
+    -fx-background: derive(-fx-base,26.4%);
+    -fx-control-inner-background: derive(-fx-base,80%);
+    -fx-shadow-highlight-color: ladder(
+            -fx-background,
+            rgba(255,255,255,0.07) 0%,
+            rgba(255,255,255,0.07) 20%,
+            rgba(255,255,255,0.07) 70%,
+            rgba(255,255,255,0.7) 90%,
+            rgba(255,255,255,0.75) 100%
+    );
+    -fx-outer-border: derive(-fx-color,-23%);
+
+    -fx-inner-border:
+            ladder(
+                    -fx-background,
+                    rgba(236,236,236,0.3) 0%,
+                    rgba(236,236,236,0.2) 40%,
+                    rgba(236,236,236,0.25) 60%,
+                    rgba(236,236,236,0.55) 80%,
+                    rgba(236,236,236,0.55) 90%,
+                    rgba(236,236,236,0.75) 100%),
+
+            ladder(
+                    -fx-background,
+                    rgba(236,236,236,0.2) 0%,
+                    rgba(236,236,236,0.1) 20%,
+                    rgba(236,236,236,0.5) 40%,
+                    rgba(236,236,236, 1) 60%,
+                    rgba(236,236,236, 1) 100%
+            );
+    FLASH_PURPLE: #9276AC;
+    button_purple: #48206E; /* 48206E 3F0B70*/
+    BUTTON_COMPLIMENT: #8248B9;//
+}
 
 .formsfx-group {
     -fx-border-width: 1px;
@@ -41,11 +77,10 @@
     -fx-highlight-fill: -fx-accent;
     -fx-highlight-text-fill: white;
     /*noinspection CssInvalidFunction*/
-    -fx-background-color:
-            -fx-focus-color,
-            -fx-control-inner-background,
-            -fx-faint-focus-color,
-            linear-gradient(from 0px 0px to 0px 5px, derive(-fx-control-inner-background, -9%), -fx-control-inner-background);
+    -fx-background-color: -fx-focus-color,
+    -fx-control-inner-background,
+    -fx-faint-focus-color,
+    linear-gradient(from 0px 0px to 0px 5px, derive(-fx-control-inner-background, -9%), -fx-control-inner-background);
     -fx-background-insets: -0.2, 1, -1.4, 3;
     -fx-background-radius: 3, 2, 4, 0;
     -fx-prompt-text-fill: transparent;
@@ -159,8 +194,8 @@
 .simple-radio-control:invalid > VBox,
 .simple-checkbox-control:invalid > VBox,
 .simple-listview-control:invalid .list-view {
-    -fx-control-inner-background: #ffe5e5;
-    -fx-border-color: transparent #EB4C4C transparent transparent;
+    /*-fx-control-inner-background: #D20035; */
+    -fx-border-color: #EB4C4C;
 }
 
 /*noinspection CssInvalidPseudoSelector*/
@@ -221,4 +256,20 @@
 .simple-checkbox-control:invalid .check-box:hover > .box,
 .simple-checkbox-control:invalid .check-box:armed > .box {
     -fx-color: #ffcccc;
+}
+
+#password {
+    -fx-border-radius: 0 0 0 0;
+    -fx-background-radius: 0 0 0 0;
+    -fx-color: #ececec;
+    -fx-faint-focus-color: #ececec;
+    -fx-control-inner-background: #ececec 10%;
+}
+
+#password:focused {
+    -fx-border-radius: 0 0 0 0;
+    -fx-background-radius: 0 0 0 0;
+    -fx-color: #ececec;/*#48206E; */
+    -fx-faint-focus-color: #ececec; /*#48206E;*/
+    -fx-control-inner-background: #ececec 10%; /*#48206E 10%; */
 }
