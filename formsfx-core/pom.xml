@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.dlsc.formsfx</groupId>
-    <artifactId>formsfx-core</artifactId>
+    <artifactId>formsfx-core-runnermann</artifactId>
     <packaging>jar</packaging>
     <version>8.4.0</version>
 
@@ -24,14 +24,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
-    <distributionManagement>
-        <repository>
-            <id>bintray-dlsc-oss-repository</id>
-            <name>dlsc-oss-repository</name>
-            <url>https://api.bintray.com/maven/dlsc-oss/repository/FormsFX/;publish=1</url>
-        </repository>
-    </distributionManagement>
+    
 
     <developers>
         <developer>
@@ -65,44 +58,6 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
-            </plugin>
-
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.0.0-M1</version>
-                <configuration>
-                    <failOnError>false</failOnError>
-                    <force>true</force>
-                    <windowtitle>FormsFX API</windowtitle>
-                    <detectLinks>true</detectLinks>
-                    <links>
-                        <link>http://docs.oracle.com/javase/8/docs/api/</link>
-                        <link>http://docs.oracle.com/javase/8/javafx/api/</link>
-                        <link>http://controlsfx.bitbucket.org</link>
-                    </links>
-                    <additionalJOption>-J-Djavafx.javadoc=true
-                    </additionalJOption>
-                    <failOnError>false</failOnError>
-                    <docfilessubdirs>true</docfilessubdirs>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>make-docs
-                        </id> <!-- this is used for inheritance merges -->
-                        <phase>package
-                        </phase> <!-- bind to the packaging phase -->
-                        <goals>
-                            <goal>aggregate</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
 
 

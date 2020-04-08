@@ -43,12 +43,15 @@ public abstract class GroupRendererBase<V extends Group> extends StackPane imple
      * - SPACING is used to set the spacing of the section as well as the
      *   spacing for vertical/horizontal gaps between controls.
      */
-    protected final int SPACING = 10;
-
+    protected int hSpacing = 10;
+    protected int vSpacing = 15;
+    protected int hTopPad = 10;
+    protected int hBotPad = 10;
+    protected int vRPad = 0;
+    protected int vLPad = 0;
     protected GridPane grid;
-
     protected V element;
-
+    
     /**
      *
      */
@@ -70,9 +73,9 @@ public abstract class GroupRendererBase<V extends Group> extends StackPane imple
             grid.getColumnConstraints().add(colConst);
         }
 
-        grid.setHgap(SPACING);
-        grid.setVgap(SPACING);
-        setPadding(new Insets(SPACING));
+        grid.setHgap(hSpacing);
+        grid.setVgap(vSpacing);
+        setPadding(new Insets(hTopPad, vLPad, hBotPad, vRPad));
 
         int currentRow = 0;
         int currentColumnCount = 0;
@@ -100,5 +103,17 @@ public abstract class GroupRendererBase<V extends Group> extends StackPane imple
 
             currentColumnCount += span;
         }
+    }
+    
+    public void setSpacing(int hSpacing, int vSpacing) {
+        this.hSpacing = hSpacing;
+        this.vSpacing = vSpacing;
+    }
+    
+    public void setPadding(int vLPad, int hTopPad, int vRPad, int hBotPad) {
+        this.vLPad = vLPad;
+        this.vRPad = vRPad;
+        this.hTopPad = hTopPad;
+        this.hBotPad = hBotPad;
     }
 }

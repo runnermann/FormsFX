@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<parent>
 		<groupId>com.dlsc.formsfx</groupId>
-		<artifactId>formsfx</artifactId>
+		<artifactId>formsfx-runnermann</artifactId>
 		<version>8.4.0</version>
 	</parent>
 
@@ -21,7 +21,7 @@
     <dependencies>
         <dependency>
             <groupId>com.dlsc.formsfx</groupId>
-            <artifactId>formsfx-core</artifactId>
+            <artifactId>formsfx-core-runnermann</artifactId>
             <version>8.4.0</version>
         </dependency>
     </dependencies>

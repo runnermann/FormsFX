@@ -1,42 +1,6 @@
 /*******************
  * GENERAL STYLING *
  *******************/
-.root {
-    -fx-base: #ececec;
-    -fx-background: derive(-fx-base,26.4%);
-    -fx-control-inner-background: derive(-fx-base,80%);
-    -fx-shadow-highlight-color: ladder(
-            -fx-background,
-            rgba(255,255,255,0.07) 0%,
-            rgba(255,255,255,0.07) 20%,
-            rgba(255,255,255,0.07) 70%,
-            rgba(255,255,255,0.7) 90%,
-            rgba(255,255,255,0.75) 100%
-    );
-    -fx-outer-border: derive(-fx-color,-23%);
-
-    -fx-inner-border:
-            ladder(
-                    -fx-background,
-                    rgba(236,236,236,0.3) 0%,
-                    rgba(236,236,236,0.2) 40%,
-                    rgba(236,236,236,0.25) 60%,
-                    rgba(236,236,236,0.55) 80%,
-                    rgba(236,236,236,0.55) 90%,
-                    rgba(236,236,236,0.75) 100%),
-
-            ladder(
-                    -fx-background,
-                    rgba(236,236,236,0.2) 0%,
-                    rgba(236,236,236,0.1) 20%,
-                    rgba(236,236,236,0.5) 40%,
-                    rgba(236,236,236, 1) 60%,
-                    rgba(236,236,236, 1) 100%
-            );
-    FLASH_PURPLE: #9276AC;
-    button_purple: #48206E; /* 48206E 3F0B70*/
-    BUTTON_COMPLIMENT: #8248B9;//
-}
 
 .formsfx-group {
     -fx-border-width: 1px;
@@ -194,8 +158,8 @@
 .simple-radio-control:invalid > VBox,
 .simple-checkbox-control:invalid > VBox,
 .simple-listview-control:invalid .list-view {
-    /*-fx-control-inner-background: #D20035; */
-    -fx-border-color: #EB4C4C;
+    -fx-control-inner-background: #ffe5e5;
+    -fx-border-color: transparent #EB4C4C transparent transparent;
 }
 
 /*noinspection CssInvalidPseudoSelector*/

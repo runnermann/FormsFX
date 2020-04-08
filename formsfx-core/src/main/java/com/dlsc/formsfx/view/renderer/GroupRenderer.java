@@ -30,7 +30,14 @@ import javafx.geometry.Insets;
  * @author Rinesch Murugathas
  */
 public class GroupRenderer extends GroupRendererBase {
-
+    
+    protected int hSpacing = 0;
+    protected int vSpacing = 0;
+    protected int hTopPad = 0;
+    protected int hBotPad = 0;
+    protected int vRPad = 0;
+    protected int vLPad = 0;
+    
     /**
      * This is the constructor to pass over data.
      *
@@ -60,8 +67,20 @@ public class GroupRenderer extends GroupRendererBase {
         getStyleClass().add("formsfx-group");
 
         setFocusTraversable(false);
-        setPadding(new Insets(SPACING * 2));
+    //    setPadding(new Insets(hSpacing * 10));
         getChildren().add(grid);
+    }
+    
+    public void setSpacing(int hSpacing, int vSpacing) {
+        this.hSpacing = hSpacing;
+        this.vSpacing = vSpacing;
+    }
+    
+    public void setPadding(int vLPad, int hTopPad, int vRPad, int hBotPad) {
+        this.vLPad = vLPad;
+        this.vRPad = vRPad;
+        this.hTopPad = hTopPad;
+        this.hBotPad = hBotPad;
     }
 
 }

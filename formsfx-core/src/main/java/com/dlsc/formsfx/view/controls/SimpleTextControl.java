@@ -107,30 +107,13 @@ public class SimpleTextControl extends SimpleControl<StringField> {
 
         int columns = field.getSpan();
 
-        if (columns < 3) {
-            int rowIndex = 0;
-            add(fieldLabel, 0, rowIndex++, columns, 1);
-            if (labelDescription != null) {
-                GridPane.setValignment(labelDescription, VPos.TOP);
-                add(labelDescription, 0, rowIndex++, columns, 1);
-            }
-            add(stack, 0, rowIndex++, columns, 1);
+    
+            add(stack, 0, 0, columns , 1);
             if (valueDescription != null) {
                 GridPane.setValignment(valueDescription, VPos.TOP);
-                add(valueDescription, 0, rowIndex, columns, 1);
+                add(valueDescription, 0, 1, columns - 2, 1);
             }
-        } else {
-            add(fieldLabel, 0, 0, 2, 1);
-            if (labelDescription != null) {
-                GridPane.setValignment(labelDescription, VPos.TOP);
-                add(labelDescription, 0, 1, 2, 1);
-            }
-            add(stack, 2, 0, columns - 2, 1);
-            if (valueDescription != null) {
-                GridPane.setValignment(valueDescription, VPos.TOP);
-                add(valueDescription, 2, 1, columns - 2, 1);
-            }
-        }
+        //}
     }
 
     /**

@@ -20,6 +20,7 @@ package com.dlsc.formsfx.view.controls;
  * =========================LICENSE_END==================================
  */
 
+//import com.dlsc.formsfx.model.structure.DataField;
 import com.dlsc.formsfx.model.structure.DataField;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
@@ -78,7 +79,7 @@ public abstract class SimpleNumberControl<F extends DataField, D extends Number>
         super.layoutParts();
 
         readOnlyLabel.getStyleClass().add("read-only-label");
-        stack.getChildren().addAll(editableSpinner, readOnlyLabel);
+        stack.getChildren().addAll(editableSpinner /*, readOnlyLabel*/);
         stack.setAlignment(Pos.CENTER_LEFT);
 
         editableSpinner.setMaxWidth(Double.MAX_VALUE);
@@ -87,30 +88,11 @@ public abstract class SimpleNumberControl<F extends DataField, D extends Number>
         Node valueDescription = field.getValueDescription();
 
         int columns = field.getSpan();
-
-        if (columns < 3) {
-            int rowIndex = 0;
-            add(fieldLabel, 0, rowIndex++, columns, 1);
-            if (labelDescription != null) {
-                GridPane.setValignment(labelDescription, VPos.TOP);
-                add(labelDescription, 0, rowIndex++, columns, 1);
-            }
-            add(stack, 0, rowIndex++, columns, 1);
-            if (valueDescription != null) {
-                GridPane.setValignment(valueDescription, VPos.TOP);
-                add(valueDescription, 0, rowIndex, columns, 1);
-            }
-        } else {
-            add(fieldLabel, 0, 0, 2, 1);
-            if (labelDescription != null) {
-                GridPane.setValignment(labelDescription, VPos.TOP);
-                add(labelDescription, 0, 1, 2, 1);
-            }
-            add(stack, 2, 0, columns - 2, 1);
-            if (valueDescription != null) {
-                GridPane.setValignment(valueDescription, VPos.TOP);
-                add(valueDescription, 2, 1, columns - 2, 1);
-            }
+    
+        add(stack, 0, 0, columns , 1);
+        if (valueDescription != null) {
+            GridPane.setValignment(valueDescription, VPos.TOP);
+            add(valueDescription, 0, 1, columns - 2, 1);
         }
     }
 
